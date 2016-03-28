@@ -12,7 +12,7 @@
 #import "DPRWebViewController.h"
 
 static const NSString *flickrSecretKey = @"b47a9d72da514bdf";
-static const NSInteger numResults = 50;
+static const NSInteger numResults = 60;
 
 static NSString *cellReuseIdentifier = @"photoCell";
 static NSString *detailSegueIdentifier = @"detailSegue";
@@ -76,7 +76,6 @@ static NSString *detailSegueIdentifier = @"detailSegue";
     // remove all spaces
     NSString *text = [_searchBar.text stringByReplacingOccurrencesOfString:@" " withString:@""];
 
-    
     NSString *urlString = [NSString stringWithFormat:@"https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=%@&tags=%@&per_page=%ld&format=json&nojsoncallback=1", flickrAPIKey, text, (long)numResults];
     NSURL *url = [NSURL URLWithString:urlString];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
