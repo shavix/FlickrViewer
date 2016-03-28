@@ -10,6 +10,7 @@
 
 @interface DPRHomeViewController()
 @property (weak, nonatomic) IBOutlet UIButton *startButton;
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 
 @end
 
@@ -24,6 +25,7 @@
 }
 
 - (void)UISetup {
+    
     _startButton.hidden = YES;
     // gif background
     NSString *filePath = [[NSBundle mainBundle] pathForResource:@"owl" ofType:@"gif"];

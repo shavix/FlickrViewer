@@ -14,7 +14,7 @@
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="dJi-rB-MbG">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="0.39989265178566152" green="0.41739662247474751" blue="0.38541316017393346" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" white="0.71286492599999995" alpha="1" colorSpace="calibratedWhite"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="mSy-Bl-mEh">
                             <size key="itemSize" width="200" height="200"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -162,7 +162,6 @@
         <!--Navigation Controller-->
         <scene sceneID="n5R-uV-iZg">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="5lB-Pe-H6A" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Qn4-9e-jip" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Esh-6N-e7N">
@@ -174,8 +173,9 @@
                         <segue destination="rk8-cS-6Di" kind="relationship" relationship="rootViewController" id="0l3-Wx-a6J"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5lB-Pe-H6A" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="24" y="294"/>
+            <point key="canvasLocation" x="1094" y="294"/>
         </scene>
         <!--Flickr Viewer-->
         <scene sceneID="snf-8n-q6w">
@@ -202,10 +202,19 @@
                                     <segue destination="Qn4-9e-jip" kind="show" id="Bbh-gi-Gyo"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Flickr Viewer" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eai-10-mnC">
+                                <rect key="frame" x="90" y="72" width="420" height="29"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="eai-10-mnC" firstAttribute="centerX" secondItem="5Df-xC-2TK" secondAttribute="centerX" id="GOo-eo-t8z"/>
+                            <constraint firstItem="eai-10-mnC" firstAttribute="top" secondItem="sTX-ZW-tle" secondAttribute="bottom" constant="52" id="Lne-Ws-p67"/>
                             <constraint firstItem="rb1-Qq-NHv" firstAttribute="top" secondItem="f2x-9O-sbU" secondAttribute="bottom" constant="80" id="djh-Yn-QDe"/>
+                            <constraint firstItem="eai-10-mnC" firstAttribute="width" secondItem="5Df-xC-2TK" secondAttribute="width" multiplier="0.7" id="ko9-4x-Gei"/>
                             <constraint firstItem="f2x-9O-sbU" firstAttribute="centerX" secondItem="5Df-xC-2TK" secondAttribute="centerX" id="qYP-sl-P68"/>
                             <constraint firstItem="f2x-9O-sbU" firstAttribute="width" secondItem="5Df-xC-2TK" secondAttribute="width" multiplier="0.5" id="zcj-9P-Ux0"/>
                         </constraints>
@@ -213,11 +222,12 @@
                     <navigationItem key="navigationItem" title="Flickr Viewer" id="uWV-eg-UBp"/>
                     <connections>
                         <outlet property="startButton" destination="f2x-9O-sbU" id="KpX-Iw-tio"/>
+                        <outlet property="titleLabel" destination="eai-10-mnC" id="WSn-R1-gsu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tzO-K4-6Jh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="898" y="816"/>
+            <point key="canvasLocation" x="118" y="294"/>
         </scene>
     </scenes>
 </document>
