@@ -136,8 +136,6 @@
 				63E35FF01CA84D8B0060CA47 /* AppDelegate.h */,
 				63E35FF11CA84D8B0060CA47 /* AppDelegate.m */,
 				63E35FFC1CA84D8B0060CA47 /* Assets.xcassets */,
-				63E360011CA84D8C0060CA47 /* Info.plist */,
-				63E35FF91CA84D8B0060CA47 /* FlickrViewer.xcdatamodeld */,
 				63E35FED1CA84D8B0060CA47 /* Supporting Files */,
 			);
 			path = FlickrViewer;
@@ -172,6 +170,8 @@
 		63E360231CA84D960060CA47 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				63E360011CA84D8C0060CA47 /* Info.plist */,
+				63E35FF91CA84D8B0060CA47 /* FlickrViewer.xcdatamodeld */,
 				63E360301CA854A90060CA47 /* DPRPhotoCell.h */,
 				63E360311CA854A90060CA47 /* DPRPhotoCell.m */,
 			);

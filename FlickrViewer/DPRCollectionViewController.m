@@ -11,7 +11,7 @@
 #import "DPRPhotoCell.h"
 
 static const NSString *flickrSecretKey = @"b47a9d72da514bdf";
-static const NSInteger numResults = 10;
+static const NSInteger numResults = 50;
 
 static NSString *cellReuseIdentifier = @"photoCell";
 static NSString *detailSegueIdentifier = @"detailSegue";
@@ -22,6 +22,7 @@ static NSString *detailSegueIdentifier = @"detailSegue";
 
 @property (nonatomic, strong) NSURLSession *urlSession;
 @property (nonatomic, strong) NSArray *photos;
+@property (nonatomic) NSInteger searchIndex;
 
 @end
 
@@ -54,6 +55,7 @@ static NSString *detailSegueIdentifier = @"detailSegue";
 - (void)search {
     
     NSString *text = _searchBar.text;
+    NSInteger currentSearchIndex = _searchIndex;
     
     NSString *urlString = [NSString stringWithFormat:@"https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=%@&tags=%@&per_page=%ld&format=json&nojsoncallback=1", flickrAPIKey, text, numResults];
     NSURL *url = [NSURL URLWithString:urlString];
@@ -68,7 +70,16 @@ static NSString *detailSegueIdentifier = @"detailSegue";
         self.photos = [[jsonDictionary valueForKey:@"photos"] objectForKey:@"photo"];
 
         dispatch_async(dispatch_get_main_queue(), ^{
-            [self.collectionView reloadData];
+            
+            //NSLog(@"current = %ld", currentSearchIndex);
+            //NSLog(@"search = %ld", _searchIndex);
+            
+            // only update UI if user's done typing
+            if(currentSearchIndex == _searchIndex){
+                
+                NSLog(@"%ld", _searchIndex);
+                [self.collectionView reloadData];
+            }
         });
         
     }];
@@ -83,6 +94,16 @@ static NSString *detailSegueIdentifier = @"detailSegue";
     
     [self addSearchBar];
     
+    UITapGestureRecognizer *collectionViewTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(collectionViewTapped)];
+    
+    [self.collectionView addGestureRecognizer:collectionViewTap];
+    
+}
+
+- (void)collectionViewTapped {
+    
+    [self.searchBar resignFirstResponder];
+
 }
 
 - (void)addSearchBar {
@@ -162,17 +183,26 @@ static NSString *detailSegueIdentifier = @"detailSegue";
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
     
     // search as you type (optional)
+    _searchIndex++;
+    [self search];
+
 }
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
     
     [self.view endEditing:YES];
-    [self search];
+    
 }
 
 - (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
     
     [self cancelSearch];
+    
+    // clear collectionView
+    self.photos = nil;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.collectionView reloadData];
+    });
     
 }
 
