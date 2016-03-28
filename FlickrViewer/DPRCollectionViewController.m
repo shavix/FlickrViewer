@@ -21,10 +21,15 @@ static NSString *detailSegueIdentifier = @"detailSegue";
 
 @property (nonatomic, strong) UISearchBar *searchBar;
 @property (nonatomic, strong) UIView *fullScreenView;
+@property (nonatomic, strong) UIBarButtonItem *cancelButton;
+@property (nonatomic, strong) UIBarButtonItem *saveButton;
+@property (nonatomic, strong) UILabel *startLabel;
+@property (nonatomic, strong) UIScrollView *scrollView;
 
 @property (nonatomic, strong) NSURLSession *urlSession;
 @property (nonatomic, strong) NSArray *photos;
 @property (nonatomic) BOOL endOfSearch;
+@property (nonatomic, strong) UIImage *HDImage;
 
 @end
 
@@ -56,6 +61,13 @@ static NSString *detailSegueIdentifier = @"detailSegue";
 
 - (void)search {
     
+    
+    // if user hit search - store results
+    if(_endOfSearch){
+        [self persistData];
+        return;
+    }
+    
     NSString *text = _searchBar.text;
     
     NSString *urlString = [NSString stringWithFormat:@"https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=%@&tags=%@&per_page=%ld&format=json&nojsoncallback=1", flickrAPIKey, text, numResults];
@@ -71,11 +83,6 @@ static NSString *detailSegueIdentifier = @"detailSegue";
         self.photos = [[jsonDictionary valueForKey:@"photos"] objectForKey:@"photo"];
 
         dispatch_async(dispatch_get_main_queue(), ^{
-            
-            // if user hit search - store results
-            if(_endOfSearch){
-                [self persistData];
-            }
             
             // only update UI if user's done typing
             [self.collectionView reloadData];
@@ -93,10 +100,6 @@ static NSString *detailSegueIdentifier = @"detailSegue";
 - (void)UISetup {
     
     [self addSearchBar];
-    
-    //UITapGestureRecognizer *collectionViewTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(collectionViewTapped)];
-    
-    //[self.collectionView addGestureRecognizer:collectionViewTap];
     
 }
 
@@ -120,6 +123,8 @@ static NSString *detailSegueIdentifier = @"detailSegue";
         self.searchBar.delegate = self;
         self.searchBar.placeholder = @"search";
         
+        [(UITextField *)self.searchBar setReturnKeyType:UIReturnKeyDone];
+
     }
     
     if (![self.searchBar isDescendantOfView:self.view]) {
@@ -170,11 +175,10 @@ static NSString *detailSegueIdentifier = @"detailSegue";
         
         dispatch_async(dispatch_get_main_queue(), ^{
             
-            //self.navigationItem.title = title;
-
             // get & set image
             NSString *urlString = [HDPhoto objectForKey:@"source"];
             UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:urlString]]];
+            self.HDImage = image;
             
             UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
             
@@ -208,6 +212,20 @@ static NSString *detailSegueIdentifier = @"detailSegue";
             [_fullScreenView addSubview:titleLabel];
             
             // add buttons to navigation bar
+            _saveButton = [[UIBarButtonItem alloc]
+                                           initWithTitle:@"Save"
+                                           style: UIBarButtonItemStylePlain
+                                           target:self
+                                           action:@selector(savePhoto)];
+            self.navigationItem.rightBarButtonItem = _saveButton;
+            
+            // add buttons to navigation bar
+            _cancelButton = [[UIBarButtonItem alloc]
+                           initWithTitle:@"Cancel"
+                           style: UIBarButtonItemStylePlain
+                           target:self
+                           action:@selector(cancelPhoto)];
+            self.navigationItem.leftBarButtonItem = _cancelButton;
             
         });
     }];
@@ -216,13 +234,31 @@ static NSString *detailSegueIdentifier = @"detailSegue";
     
 }
 
+- (void)cancelPhoto {
+    [self closePhoto];
+}
+
+- (void)savePhoto {
+
+    UIImageWriteToSavedPhotosAlbum(_HDImage, nil, nil, nil);
+
+}
+
 - (void)imageSwiped {
+    
+    [self closePhoto];
+    
+}
+
+- (void)closePhoto {
+    
+    self.navigationItem.leftBarButtonItem = nil;
+    self.navigationItem.rightBarButtonItem = nil;
     
     self.navigationItem.title = @"Photo Reel";
     [_fullScreenView removeFromSuperview];
     
 }
-
 
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     

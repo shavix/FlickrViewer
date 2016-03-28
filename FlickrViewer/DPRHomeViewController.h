@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface DPRHomeViewController : UIViewController
+@interface DPRHomeViewController : UIViewController <UIWebViewDelegate>
 
 @end
