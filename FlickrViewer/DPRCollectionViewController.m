@@ -25,6 +25,7 @@ static NSString *detailSegueIdentifier = @"detailSegue";
 @property (nonatomic, strong) UIBarButtonItem *saveButton;
 @property (nonatomic, strong) UILabel *startLabel;
 @property (nonatomic, strong) UIScrollView *scrollView;
+@property (nonatomic, strong) UIImageView *HDImageView;
 
 @property (nonatomic, strong) NSURLSession *urlSession;
 @property (nonatomic, strong) NSArray *photos;
@@ -180,7 +181,7 @@ static NSString *detailSegueIdentifier = @"detailSegue";
             UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:urlString]]];
             self.HDImage = image;
             
-            UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
+            self.HDImageView = [[UIImageView alloc] initWithImage:image];
             
             CGFloat imageWidth = image.size.width;
             CGFloat scale = self.view.frame.size.width / imageWidth;
@@ -190,10 +191,22 @@ static NSString *detailSegueIdentifier = @"detailSegue";
             
             CGRect imageFrame = CGRectMake(0, 0, self.view.frame.size.width, newHeight);
             
-            imageView.frame = imageFrame;
-            imageView.center = CGPointMake(self.view.center.x, self.view.center.y);
+            _HDImageView.frame = imageFrame;
+            _HDImageView.center = CGPointMake(self.view.center.x, self.view.center.y);
             
-            [_fullScreenView addSubview:imageView];
+            // scrollView
+            self.scrollView = [[UIScrollView alloc] initWithFrame:self.view.frame];
+            self.scrollView.center = CGPointMake(self.view.center.x, self.view.center.y);
+            self.scrollView.minimumZoomScale=0.5;
+            self.scrollView.maximumZoomScale=6.0;
+            self.scrollView.contentSize=CGSizeMake(1280, 960);
+            self.scrollView.delegate=self;
+            
+            [self.scrollView addSubview:_HDImageView];
+        
+            [_fullScreenView addSubview:_scrollView];
+            
+            //[_fullScreenView addSubview:_HDImageView];
             
             // add title label
             NSString *title = [[_photos objectAtIndex:indexPath.row] objectForKey:@"title"];
@@ -232,6 +245,11 @@ static NSString *detailSegueIdentifier = @"detailSegue";
 
     [self.view addSubview:_fullScreenView];
     
+}
+
+- (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView
+{
+    return self.HDImageView;
 }
 
 - (void)cancelPhoto {

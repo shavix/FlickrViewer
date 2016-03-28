@@ -10,6 +10,6 @@
 
 static const NSString *flickrAPIKey = @"d7f3b39e34aad94a9c0249e676c0074f";
 
-@interface DPRCollectionViewController : UICollectionViewController <UISearchBarDelegate,UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout>
+@interface DPRCollectionViewController : UICollectionViewController <UISearchBarDelegate,UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UIScrollViewDelegate>
 
 @end

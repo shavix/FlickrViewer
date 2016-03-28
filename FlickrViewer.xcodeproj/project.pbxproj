@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6362F3FA1CA8F88400B4FAEA /* Logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 6362F3F91CA8F88400B4FAEA /* Logo.png */; };
 		63722CDD1CA895DF00C9EE08 /* DPRWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63722CDC1CA895DF00C9EE08 /* DPRWebViewController.m */; };
 		63C83E791CA8B6C700AFF8B6 /* owl.gif in Resources */ = {isa = PBXBuildFile; fileRef = 63C83E781CA8B6C700AFF8B6 /* owl.gif */; };
 		63E35FEF1CA84D8B0060CA47 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 63E35FEE1CA84D8B0060CA47 /* main.m */; };
@@ -42,6 +43,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		6362F3F91CA8F88400B4FAEA /* Logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Logo.png; sourceTree = "<group>"; };
 		63722CDB1CA895DF00C9EE08 /* DPRWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DPRWebViewController.h; sourceTree = "<group>"; };
 		63722CDC1CA895DF00C9EE08 /* DPRWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DPRWebViewController.m; sourceTree = "<group>"; };
 		63C83E781CA8B6C700AFF8B6 /* owl.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = owl.gif; sourceTree = "<group>"; };
@@ -202,6 +204,7 @@
 		63E360271CA84E0E0060CA47 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				6362F3F91CA8F88400B4FAEA /* Logo.png */,
 				63C83E781CA8B6C700AFF8B6 /* owl.gif */,
 			);
 			name = Images;
@@ -348,6 +351,7 @@
 			files = (
 				63E360001CA84D8B0060CA47 /* LaunchScreen.storyboard in Resources */,
 				63C83E791CA8B6C700AFF8B6 /* owl.gif in Resources */,
+				6362F3FA1CA8F88400B4FAEA /* Logo.png in Resources */,
 				63E35FFD1CA84D8B0060CA47 /* Assets.xcassets in Resources */,
 				63E35FF81CA84D8B0060CA47 /* Main.storyboard in Resources */,
 			);

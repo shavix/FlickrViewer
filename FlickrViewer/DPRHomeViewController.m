@@ -10,7 +10,6 @@
 
 @interface DPRHomeViewController()
 @property (weak, nonatomic) IBOutlet UIButton *startButton;
-@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 
 @end
 

@@ -190,7 +190,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f2x-9O-sbU">
-                                <rect key="frame" x="150" y="470" width="300" height="50"/>
+                                <rect key="frame" x="150" y="510" width="300" height="50"/>
                                 <color key="backgroundColor" red="0.36939340240000001" green="0.82618882770000002" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="Tgc-AK-dBG"/>
@@ -202,27 +202,26 @@
                                     <segue destination="Qn4-9e-jip" kind="show" id="Bbh-gi-Gyo"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Flickr Viewer" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eai-10-mnC">
-                                <rect key="frame" x="90" y="72" width="420" height="29"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="BFc-tG-YcZ">
+                                <rect key="frame" x="150" y="60" width="300" height="160"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="BFc-tG-YcZ" secondAttribute="height" multiplier="15:8" id="bIa-Jl-Dd8"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="eai-10-mnC" firstAttribute="centerX" secondItem="5Df-xC-2TK" secondAttribute="centerX" id="GOo-eo-t8z"/>
-                            <constraint firstItem="eai-10-mnC" firstAttribute="top" secondItem="sTX-ZW-tle" secondAttribute="bottom" constant="52" id="Lne-Ws-p67"/>
-                            <constraint firstItem="rb1-Qq-NHv" firstAttribute="top" secondItem="f2x-9O-sbU" secondAttribute="bottom" constant="80" id="djh-Yn-QDe"/>
-                            <constraint firstItem="eai-10-mnC" firstAttribute="width" secondItem="5Df-xC-2TK" secondAttribute="width" multiplier="0.7" id="ko9-4x-Gei"/>
+                            <constraint firstItem="BFc-tG-YcZ" firstAttribute="centerX" secondItem="5Df-xC-2TK" secondAttribute="centerX" id="0VH-Vp-HcA"/>
+                            <constraint firstItem="BFc-tG-YcZ" firstAttribute="width" secondItem="5Df-xC-2TK" secondAttribute="width" multiplier="0.5" id="b6P-cw-MeT"/>
+                            <constraint firstItem="rb1-Qq-NHv" firstAttribute="top" secondItem="f2x-9O-sbU" secondAttribute="bottom" constant="40" id="djh-Yn-QDe"/>
                             <constraint firstItem="f2x-9O-sbU" firstAttribute="centerX" secondItem="5Df-xC-2TK" secondAttribute="centerX" id="qYP-sl-P68"/>
+                            <constraint firstItem="BFc-tG-YcZ" firstAttribute="top" secondItem="sTX-ZW-tle" secondAttribute="bottom" constant="40" id="tYU-6R-C48"/>
                             <constraint firstItem="f2x-9O-sbU" firstAttribute="width" secondItem="5Df-xC-2TK" secondAttribute="width" multiplier="0.5" id="zcj-9P-Ux0"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Flickr Viewer" id="uWV-eg-UBp"/>
                     <connections>
                         <outlet property="startButton" destination="f2x-9O-sbU" id="KpX-Iw-tio"/>
-                        <outlet property="titleLabel" destination="eai-10-mnC" id="WSn-R1-gsu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tzO-K4-6Jh" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -230,4 +229,7 @@
             <point key="canvasLocation" x="118" y="294"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Logo.png" width="440" height="162"/>
+    </resources>
 </document>
