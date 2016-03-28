@@ -9,7 +9,6 @@
 #import "DPRHomeViewController.h"
 
 @interface DPRHomeViewController()
-
 @property (weak, nonatomic) IBOutlet UIButton *startButton;
 
 @end
@@ -29,10 +28,15 @@
     NSString *filePath = [[NSBundle mainBundle] pathForResource:@"owl" ofType:@"gif"];
     NSData *gif = [NSData dataWithContentsOfFile:filePath];
     
-    UIWebView *webView = [[UIWebView alloc] initWithFrame:self.view.frame];
+    CGRect frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
+
+    UIWebView *webView = [[UIWebView alloc] initWithFrame:frame];
+    webView.scalesPageToFit = YES;
+    webView.layer.zPosition = -1;
     [webView loadData:gif MIMEType:@"image/gif" textEncodingName:nil baseURL:nil];
     webView.userInteractionEnabled = NO;
     [self.view addSubview:webView];
+
     
 }
 

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		63722CDD1CA895DF00C9EE08 /* DPRWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63722CDC1CA895DF00C9EE08 /* DPRWebViewController.m */; };
+		63C83E791CA8B6C700AFF8B6 /* owl.gif in Resources */ = {isa = PBXBuildFile; fileRef = 63C83E781CA8B6C700AFF8B6 /* owl.gif */; };
 		63E35FEF1CA84D8B0060CA47 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 63E35FEE1CA84D8B0060CA47 /* main.m */; };
 		63E35FF21CA84D8B0060CA47 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 63E35FF11CA84D8B0060CA47 /* AppDelegate.m */; };
 		63E35FF81CA84D8B0060CA47 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 63E35FF61CA84D8B0060CA47 /* Main.storyboard */; };
@@ -16,7 +17,6 @@
 		63E360001CA84D8B0060CA47 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 63E35FFE1CA84D8B0060CA47 /* LaunchScreen.storyboard */; };
 		63E3600B1CA84D8C0060CA47 /* FlickrViewerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 63E3600A1CA84D8C0060CA47 /* FlickrViewerTests.m */; };
 		63E360161CA84D8C0060CA47 /* FlickrViewerUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 63E360151CA84D8C0060CA47 /* FlickrViewerUITests.m */; };
-		63E360291CA84E200060CA47 /* owl.gif in Resources */ = {isa = PBXBuildFile; fileRef = 63E360281CA84E200060CA47 /* owl.gif */; };
 		63E3602C1CA84E440060CA47 /* DPRHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63E3602B1CA84E440060CA47 /* DPRHomeViewController.m */; };
 		63E3602F1CA8540E0060CA47 /* DPRCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63E3602E1CA8540E0060CA47 /* DPRCollectionViewController.m */; };
 		63E360321CA854A90060CA47 /* DPRPhotoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 63E360311CA854A90060CA47 /* DPRPhotoCell.m */; };
@@ -44,6 +44,7 @@
 /* Begin PBXFileReference section */
 		63722CDB1CA895DF00C9EE08 /* DPRWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DPRWebViewController.h; sourceTree = "<group>"; };
 		63722CDC1CA895DF00C9EE08 /* DPRWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DPRWebViewController.m; sourceTree = "<group>"; };
+		63C83E781CA8B6C700AFF8B6 /* owl.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = owl.gif; sourceTree = "<group>"; };
 		63E35FEA1CA84D8B0060CA47 /* FlickrViewer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FlickrViewer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		63E35FEE1CA84D8B0060CA47 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		63E35FF01CA84D8B0060CA47 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -59,7 +60,6 @@
 		63E360111CA84D8C0060CA47 /* FlickrViewerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FlickrViewerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		63E360151CA84D8C0060CA47 /* FlickrViewerUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FlickrViewerUITests.m; sourceTree = "<group>"; };
 		63E360171CA84D8C0060CA47 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		63E360281CA84E200060CA47 /* owl.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = owl.gif; sourceTree = "<group>"; };
 		63E3602A1CA84E440060CA47 /* DPRHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DPRHomeViewController.h; sourceTree = "<group>"; };
 		63E3602B1CA84E440060CA47 /* DPRHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DPRHomeViewController.m; sourceTree = "<group>"; };
 		63E3602D1CA8540E0060CA47 /* DPRCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DPRCollectionViewController.h; sourceTree = "<group>"; };
@@ -202,7 +202,7 @@
 		63E360271CA84E0E0060CA47 /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				63E360281CA84E200060CA47 /* owl.gif */,
+				63C83E781CA8B6C700AFF8B6 /* owl.gif */,
 			);
 			name = Images;
 			sourceTree = "<group>";
@@ -347,7 +347,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				63E360001CA84D8B0060CA47 /* LaunchScreen.storyboard in Resources */,
-				63E360291CA84E200060CA47 /* owl.gif in Resources */,
+				63C83E791CA8B6C700AFF8B6 /* owl.gif in Resources */,
 				63E35FFD1CA84D8B0060CA47 /* Assets.xcassets in Resources */,
 				63E35FF81CA84D8B0060CA47 /* Main.storyboard in Resources */,
 			);
