@@ -14,7 +14,7 @@
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="dJi-rB-MbG">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="0.71286492599999995" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.36899961548563842" green="0.59243037956124878" blue="0.62745098040000002" alpha="1" colorSpace="calibratedRGB"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="mSy-Bl-mEh">
                             <size key="itemSize" width="200" height="200"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -40,7 +40,7 @@
                     <navigationItem key="navigationItem" title="Photo Reel" id="qCI-5v-Iki"/>
                     <connections>
                         <outlet property="searchDisplayController" destination="k0r-YH-4Uw" id="GKC-dX-F4b"/>
-                        <segue destination="2fB-hQ-8NL" kind="show" identifier="detailSegue" id="93p-jd-Jbn"/>
+                        <segue destination="gOp-s2-y3n" kind="show" identifier="webViewSegue" id="hwa-7T-KWJ"/>
                     </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Pg4-fO-MWr" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -55,77 +55,7 @@
             </objects>
             <point key="canvasLocation" x="1962" y="294"/>
         </scene>
-        <!--Flickr Viewer-->
-        <scene sceneID="WUG-hW-gGJ">
-            <objects>
-                <viewController id="2fB-hQ-8NL" customClass="DPRDetailViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="2jm-8E-Ai8"/>
-                        <viewControllerLayoutGuide type="bottom" id="0Oy-Dx-PdK"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="jBD-gn-cC6">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="wK2-Li-kCf">
-                                <rect key="frame" x="90" y="104" width="420" height="420"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="wK2-Li-kCf" secondAttribute="height" multiplier="1:1" id="SYF-tk-pNn"/>
-                                </constraints>
-                            </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="09Y-HU-Dio">
-                                <rect key="frame" x="90" y="561" width="420" height="18"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="100" id="eeS-p6-axU"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="eeS-p6-axU"/>
-                                    </mask>
-                                </variation>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GJe-aK-WyO">
-                                <rect key="frame" x="90" y="529" width="420" height="12"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <color key="backgroundColor" red="0.3998926518" green="0.41739662249999998" blue="0.38541316019999999" alpha="1" colorSpace="calibratedRGB"/>
-                        <constraints>
-                            <constraint firstItem="09Y-HU-Dio" firstAttribute="centerX" secondItem="jBD-gn-cC6" secondAttribute="centerX" id="3KA-MQ-ykd"/>
-                            <constraint firstItem="GJe-aK-WyO" firstAttribute="width" secondItem="jBD-gn-cC6" secondAttribute="width" multiplier="0.7" id="3jq-Ty-hB5"/>
-                            <constraint firstItem="GJe-aK-WyO" firstAttribute="top" secondItem="wK2-Li-kCf" secondAttribute="bottom" constant="5" id="9Lr-zh-b9m"/>
-                            <constraint firstItem="09Y-HU-Dio" firstAttribute="width" secondItem="jBD-gn-cC6" secondAttribute="width" multiplier="0.7" id="BdG-3q-K0c"/>
-                            <constraint firstItem="wK2-Li-kCf" firstAttribute="centerX" secondItem="jBD-gn-cC6" secondAttribute="centerX" id="PXW-Iq-sPF"/>
-                            <constraint firstItem="wK2-Li-kCf" firstAttribute="top" secondItem="2jm-8E-Ai8" secondAttribute="bottom" constant="40" id="Q9w-zM-JJ9"/>
-                            <constraint firstItem="09Y-HU-Dio" firstAttribute="top" secondItem="wK2-Li-kCf" secondAttribute="bottom" constant="50" id="beR-u6-b0J"/>
-                            <constraint firstItem="GJe-aK-WyO" firstAttribute="centerX" secondItem="jBD-gn-cC6" secondAttribute="centerX" id="bfs-aN-hV2"/>
-                            <constraint firstItem="09Y-HU-Dio" firstAttribute="top" secondItem="GJe-aK-WyO" secondAttribute="bottom" constant="20" id="dr8-6v-vTp"/>
-                            <constraint firstItem="wK2-Li-kCf" firstAttribute="width" secondItem="jBD-gn-cC6" secondAttribute="width" multiplier="0.7" id="vTt-vL-dk9"/>
-                        </constraints>
-                        <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="beR-u6-b0J"/>
-                            </mask>
-                        </variation>
-                    </view>
-                    <navigationItem key="navigationItem" title="Flickr Viewer" id="zWu-gh-6Iw"/>
-                    <connections>
-                        <outlet property="detailLabel" destination="GJe-aK-WyO" id="YpB-fh-R25"/>
-                        <outlet property="imageTitle" destination="09Y-HU-Dio" id="ADU-6t-0c5"/>
-                        <outlet property="imageView" destination="wK2-Li-kCf" id="WZI-xj-74K"/>
-                        <segue destination="gOp-s2-y3n" kind="show" identifier="webSegue" id="Zp3-DJ-YIQ"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="3rE-yd-dmE" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2811" y="294"/>
-        </scene>
-        <!--Flickr Viewer-->
+        <!--Web View-->
         <scene sceneID="pGU-gS-xOm">
             <objects>
                 <viewController id="gOp-s2-y3n" customClass="DPRWebViewController" sceneMemberID="viewController">
@@ -150,14 +80,14 @@
                             <constraint firstItem="V2V-iJ-GSi" firstAttribute="centerX" secondItem="hLV-CW-z4P" secondAttribute="centerX" id="z2u-Bb-6IH"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Flickr Viewer" id="8lP-u9-9iN"/>
+                    <navigationItem key="navigationItem" title="Web View" id="8lP-u9-9iN"/>
                     <connections>
                         <outlet property="webView" destination="V2V-iJ-GSi" id="sCP-K5-5Ix"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wJn-tI-h96" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3584" y="294"/>
+            <point key="canvasLocation" x="2784" y="294"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="n5R-uV-iZg">

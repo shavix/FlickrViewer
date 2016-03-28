@@ -21,7 +21,6 @@
 		63E3602C1CA84E440060CA47 /* DPRHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63E3602B1CA84E440060CA47 /* DPRHomeViewController.m */; };
 		63E3602F1CA8540E0060CA47 /* DPRCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63E3602E1CA8540E0060CA47 /* DPRCollectionViewController.m */; };
 		63E360321CA854A90060CA47 /* DPRPhotoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 63E360311CA854A90060CA47 /* DPRPhotoCell.m */; };
-		63E360351CA87EEA0060CA47 /* DPRDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63E360341CA87EEA0060CA47 /* DPRDetailViewController.m */; };
 		63E360391CA882970060CA47 /* DPRPhotoHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 63E360381CA882970060CA47 /* DPRPhotoHelper.m */; };
 /* End PBXBuildFile section */
 
@@ -68,8 +67,6 @@
 		63E3602E1CA8540E0060CA47 /* DPRCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DPRCollectionViewController.m; sourceTree = "<group>"; };
 		63E360301CA854A90060CA47 /* DPRPhotoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DPRPhotoCell.h; sourceTree = "<group>"; };
 		63E360311CA854A90060CA47 /* DPRPhotoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DPRPhotoCell.m; sourceTree = "<group>"; };
-		63E360331CA87EEA0060CA47 /* DPRDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DPRDetailViewController.h; path = ../../../../INTERVIEWS/Fieldwire/FlickrViewer/DPRDetailViewController.h; sourceTree = "<group>"; };
-		63E360341CA87EEA0060CA47 /* DPRDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DPRDetailViewController.m; path = ../../../../INTERVIEWS/Fieldwire/FlickrViewer/DPRDetailViewController.m; sourceTree = "<group>"; };
 		63E360371CA882970060CA47 /* DPRPhotoHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DPRPhotoHelper.h; path = ../../../../INTERVIEWS/Fieldwire/FlickrViewer/FlickrViewer/DPRPhotoHelper.h; sourceTree = "<group>"; };
 		63E360381CA882970060CA47 /* DPRPhotoHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DPRPhotoHelper.m; path = ../../../../INTERVIEWS/Fieldwire/FlickrViewer/FlickrViewer/DPRPhotoHelper.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -186,7 +183,6 @@
 				63722CDA1CA895CB00C9EE08 /* WebView */,
 				63E3603D1CA882E40060CA47 /* Helper */,
 				63E3603B1CA882CB0060CA47 /* CollectionView */,
-				63E3603C1CA882D70060CA47 /* DetailView */,
 				63E3603A1CA882C40060CA47 /* Home */,
 			);
 			name = Controller;
@@ -226,15 +222,6 @@
 				63E3602E1CA8540E0060CA47 /* DPRCollectionViewController.m */,
 			);
 			name = CollectionView;
-			sourceTree = "<group>";
-		};
-		63E3603C1CA882D70060CA47 /* DetailView */ = {
-			isa = PBXGroup;
-			children = (
-				63E360331CA87EEA0060CA47 /* DPRDetailViewController.h */,
-				63E360341CA87EEA0060CA47 /* DPRDetailViewController.m */,
-			);
-			name = DetailView;
 			sourceTree = "<group>";
 		};
 		63E3603D1CA882E40060CA47 /* Helper */ = {
@@ -384,7 +371,6 @@
 				63E360391CA882970060CA47 /* DPRPhotoHelper.m in Sources */,
 				63722CDD1CA895DF00C9EE08 /* DPRWebViewController.m in Sources */,
 				63E35FEF1CA84D8B0060CA47 /* main.m in Sources */,
-				63E360351CA87EEA0060CA47 /* DPRDetailViewController.m in Sources */,
 				63E3602C1CA84E440060CA47 /* DPRHomeViewController.m in Sources */,
 				63E360321CA854A90060CA47 /* DPRPhotoCell.m in Sources */,
 			);
