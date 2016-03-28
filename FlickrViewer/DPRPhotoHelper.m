@@ -13,11 +13,11 @@
 
 + (void)thumbnailForPhoto:(NSDictionary *)photo completion:(void (^)(UIImage *))completion {
     
+    // load UIImage
     NSString *urlString =
     [NSString stringWithFormat:@"http://farm%@.static.flickr.com/%@/%@_%@_s.jpg",
      [photo objectForKey:@"farm"], [photo objectForKey:@"server"],
      [photo objectForKey:@"id"], [photo objectForKey:@"secret"]];
-    
     UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:urlString]]];
     
     completion(image);
@@ -28,20 +28,19 @@
     
     
     NSString *photoID = [photo objectForKey:@"id"];
-    
+    // create request
     NSString *urlString = [NSString stringWithFormat:@"https://api.flickr.com/services/rest/?method=flickr.photos.getSizes&api_key=%@&photo_id=%@&format=json&nojsoncallback=1", flickrAPIKey, photoID];
-    
     NSURL *url = [NSURL URLWithString:urlString];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
-    
     NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
     NSURLSession *urlSession = [NSURLSession sessionWithConfiguration:configuration];
-    
+
+    // begin download
     NSURLSessionDownloadTask *downloadTask = [urlSession downloadTaskWithRequest:request completionHandler:^(NSURL *location, NSURLResponse *response, NSError *error) {
         
+        // parse data
         NSData *data = [NSData dataWithContentsOfURL:location];
         NSDictionary *jsonDictionary = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
-        
         NSArray *sizes = [[jsonDictionary objectForKey:@"sizes"] objectForKey:@"size"];
         NSDictionary *HDPhoto = [sizes objectAtIndex:[sizes count] - 1];
         
@@ -51,7 +50,6 @@
     
     [downloadTask resume];
 
-    
 }
 
 @end

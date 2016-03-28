@@ -121,7 +121,6 @@
                         <subviews>
                             <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f2x-9O-sbU">
                                 <rect key="frame" x="150" y="510" width="300" height="50"/>
-                                <color key="backgroundColor" red="0.36939340240000001" green="0.82618882770000002" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="Tgc-AK-dBG"/>
                                 </constraints>
@@ -133,16 +132,16 @@
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="BFc-tG-YcZ">
-                                <rect key="frame" x="150" y="60" width="300" height="160"/>
+                                <rect key="frame" x="90" y="60" width="420" height="154.5"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondItem="BFc-tG-YcZ" secondAttribute="height" multiplier="15:8" id="bIa-Jl-Dd8"/>
+                                    <constraint firstAttribute="width" secondItem="BFc-tG-YcZ" secondAttribute="height" multiplier="220:81" id="bIa-Jl-Dd8"/>
                                 </constraints>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="BFc-tG-YcZ" firstAttribute="centerX" secondItem="5Df-xC-2TK" secondAttribute="centerX" id="0VH-Vp-HcA"/>
-                            <constraint firstItem="BFc-tG-YcZ" firstAttribute="width" secondItem="5Df-xC-2TK" secondAttribute="width" multiplier="0.5" id="b6P-cw-MeT"/>
+                            <constraint firstItem="BFc-tG-YcZ" firstAttribute="width" secondItem="5Df-xC-2TK" secondAttribute="width" multiplier="0.7" id="b6P-cw-MeT"/>
                             <constraint firstItem="rb1-Qq-NHv" firstAttribute="top" secondItem="f2x-9O-sbU" secondAttribute="bottom" constant="40" id="djh-Yn-QDe"/>
                             <constraint firstItem="f2x-9O-sbU" firstAttribute="centerX" secondItem="5Df-xC-2TK" secondAttribute="centerX" id="qYP-sl-P68"/>
                             <constraint firstItem="BFc-tG-YcZ" firstAttribute="top" secondItem="sTX-ZW-tle" secondAttribute="bottom" constant="40" id="tYU-6R-C48"/>

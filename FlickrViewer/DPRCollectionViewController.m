@@ -11,11 +11,9 @@
 #import "DPRPhotoHelper.h"
 #import "DPRWebViewController.h"
 
-static const NSString *flickrSecretKey = @"b47a9d72da514bdf";
 static const NSInteger numResults = 60;
-
 static NSString *cellReuseIdentifier = @"photoCell";
-static NSString *detailSegueIdentifier = @"detailSegue";
+static NSString *webViewSegueIdentifier = @"webViewSegue";
 
 @interface DPRCollectionViewController()
 
@@ -52,54 +50,16 @@ static NSString *detailSegueIdentifier = @"detailSegue";
 
 - (void)setup {
     
+    // collectionView
     self.collectionView.delegate = self;
     self.collectionView.dataSource = self;
     [self.collectionView registerClass:[DPRPhotoCell class] forCellWithReuseIdentifier:cellReuseIdentifier];
     
+    // urlSession
     NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
     self.urlSession = [NSURLSession sessionWithConfiguration:configuration];
 
 }
-
-
-#pragma mark - searching
-
-- (void)search {
-    
-    
-    // if user hit search - store results
-    if(_endOfSearch){
-        [self persistData];
-        return;
-    }
-    
-    // remove all spaces
-    NSString *text = [_searchBar.text stringByReplacingOccurrencesOfString:@" " withString:@""];
-
-    NSString *urlString = [NSString stringWithFormat:@"https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=%@&tags=%@&per_page=%ld&format=json&nojsoncallback=1", flickrAPIKey, text, (long)numResults];
-    NSURL *url = [NSURL URLWithString:urlString];
-    NSURLRequest *request = [NSURLRequest requestWithURL:url];
-    
-    NSURLSessionDownloadTask *dataTask = [_urlSession downloadTaskWithRequest:request completionHandler:^(NSURL *location, NSURLResponse *response, NSError *error) {
-        
-        NSData *data = [NSData dataWithContentsOfURL:location];
-        
-        NSDictionary *jsonDictionary = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
-
-        self.photos = [[jsonDictionary valueForKey:@"photos"] objectForKey:@"photo"];
-
-        dispatch_async(dispatch_get_main_queue(), ^{
-            
-            // only update UI if user's done typing
-            [self.collectionView reloadData];
-            
-        });
-        
-    }];
-    
-    [dataTask resume];
-}
-
 
 #pragma mark - UI
 
@@ -118,8 +78,8 @@ static NSString *detailSegueIdentifier = @"detailSegue";
 
 - (void)addSearchBar {
     
+    // create search bar
     if(!_searchBar) {
-        
         CGFloat statusBarHeight = [UIApplication sharedApplication].statusBarFrame.size.height;
         CGFloat searchY = self.navigationController.navigationBar.frame.size.height + statusBarHeight;
         CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
@@ -134,23 +94,78 @@ static NSString *detailSegueIdentifier = @"detailSegue";
 
     }
     
+    // add once
     if (![self.searchBar isDescendantOfView:self.view]) {
         [self.view addSubview:self.searchBar];
     }
     
 }
 
+- (void)linkTapped {
+    [self performSegueWithIdentifier:webViewSegueIdentifier sender:self];
+}
+
+- (void)cancelPhoto {
+    [self closePhoto];
+}
+
+- (void)savePhoto {
+    UIImageWriteToSavedPhotosAlbum(_HDImage, nil, nil, nil);
+}
+
+- (void)closePhoto {
+    
+    // reset navigation item
+    self.navigationItem.leftBarButtonItem = nil;
+    self.navigationItem.rightBarButtonItem = nil;
+    self.navigationItem.title = @"Photo Reel";
+    [_fullScreenView removeFromSuperview];
+    
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    
+    // webView segue
+    if([segue.identifier isEqualToString:webViewSegueIdentifier]){
+        
+        DPRWebViewController *webViewController = segue.destinationViewController;
+        webViewController.photo = _HDPhoto;
+        
+    }
+    
+}
+
+- (void)activityIndicator {
+    
+    // activity indicator
+    _activityView=[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+    _activityView.center = CGPointMake([UIScreen mainScreen].bounds.size.width / 2.0, [UIScreen mainScreen].bounds.size.height / 2.0);
+    [_activityView startAnimating];
+    _activityView.layer.zPosition = 1000;
+    _activityView.tag = 100;
+    [self.view addSubview:_activityView];
+    
+    // label
+    int x = ([UIScreen mainScreen].bounds.size.width / 2.0) - 30;
+    int y = ([UIScreen mainScreen].bounds.size.height / 2.0) + 20;
+    _loadingLabel = [[UILabel alloc]initWithFrame:CGRectMake(x, y, 200, 40)];
+    [_loadingLabel setBackgroundColor:[UIColor clearColor]];
+    
+    _loadingLabel.layer.zPosition = 1000;
+    [_loadingLabel setText:@"Loading"];
+    _loadingLabel.textColor = [UIColor whiteColor];
+    [[self view] addSubview:_loadingLabel];
+    
+}
+
 #pragma mark - collectionView
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
-    
     return 1;
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    
     return [_photos count];
-    
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -174,24 +189,7 @@ static NSString *detailSegueIdentifier = @"detailSegue";
     _fullScreenView = [[UIView alloc] initWithFrame:self.view.frame];
     _fullScreenView.backgroundColor = [UIColor blackColor];
     
-    // activity indicator
-    _activityView=[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
-    _activityView.center = CGPointMake([UIScreen mainScreen].bounds.size.width / 2.0, [UIScreen mainScreen].bounds.size.height / 2.0);
-    [_activityView startAnimating];
-    _activityView.layer.zPosition = 1000;
-    _activityView.tag = 100;
-    [self.view addSubview:_activityView];
-    
-    // label
-    int x = ([UIScreen mainScreen].bounds.size.width / 2.0) - 30;
-    int y = ([UIScreen mainScreen].bounds.size.height / 2.0) + 20;
-    _loadingLabel = [[UILabel alloc]initWithFrame:CGRectMake(x, y, 200, 40)];
-    [_loadingLabel setBackgroundColor:[UIColor clearColor]];
-    
-    _loadingLabel.layer.zPosition = 1000;
-    [_loadingLabel setText:@"Loading"];
-    _loadingLabel.textColor = [UIColor whiteColor];
-    [[self view] addSubview:_loadingLabel];
+    [self activityIndicator];
 
     [DPRPhotoHelper HDImageForPhoto:[_photos objectAtIndex:indexPath.row] completion:^(NSDictionary *HDPhoto){
         
@@ -204,15 +202,11 @@ static NSString *detailSegueIdentifier = @"detailSegue";
             self.HDPhoto = HDPhoto;
             
             self.HDImageView = [[UIImageView alloc] initWithImage:image];
-            
             CGFloat imageWidth = image.size.width;
             CGFloat scale = self.view.frame.size.width / imageWidth;
-            
             CGFloat imageHeight = image.size.height;
             CGFloat newHeight = imageHeight * scale;
-            
             CGRect imageFrame = CGRectMake(0, 0, self.view.frame.size.width, newHeight);
-            
             _HDImageView.frame = imageFrame;
             _HDImageView.center = CGPointMake(self.view.center.x, self.view.center.y);
             
@@ -223,9 +217,7 @@ static NSString *detailSegueIdentifier = @"detailSegue";
             self.scrollView.maximumZoomScale=6.0;
             self.scrollView.contentSize=CGSizeMake(1280, 960);
             self.scrollView.delegate=self;
-            
             [self.scrollView addSubview:_HDImageView];
-        
             [_fullScreenView addSubview:_scrollView];
             
             // add title label
@@ -238,10 +230,8 @@ static NSString *detailSegueIdentifier = @"detailSegue";
             titleLabel.adjustsFontSizeToFitWidth = NO;
             titleLabel.numberOfLines = 0;
             titleLabel.textAlignment = NSTextAlignmentCenter;
-
             CGFloat startY = self.view.frame.size.height - 80;
             titleLabel.center = CGPointMake(self.view.center.x, startY);
-            
             [_fullScreenView addSubview:titleLabel];
             
             // add webView button
@@ -251,9 +241,7 @@ static NSString *detailSegueIdentifier = @"detailSegue";
             [self.webViewButton titleLabel].font = [UIFont italicSystemFontOfSize:12];
             [self.webViewButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
             self.webViewButton.center = CGPointMake(titleLabel.center.x, titleLabel.center.y + 40);
-            
             [self.webViewButton addTarget:self action:@selector(linkTapped) forControlEvents:UIControlEventTouchUpInside];
-            
             [_fullScreenView addSubview:self.webViewButton];
             
             // add buttons to navigation bar
@@ -264,7 +252,6 @@ static NSString *detailSegueIdentifier = @"detailSegue";
                                            action:@selector(savePhoto)];
             self.navigationItem.rightBarButtonItem = _saveButton;
             
-            // add buttons to navigation bar
             _cancelButton = [[UIBarButtonItem alloc]
                            initWithTitle:@"Cancel"
                            style: UIBarButtonItemStylePlain
@@ -283,57 +270,55 @@ static NSString *detailSegueIdentifier = @"detailSegue";
     
 }
 
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    
-    if([segue.identifier isEqualToString:@"webViewSegue"]){
-        
-        DPRWebViewController *webViewController = segue.destinationViewController;
-        
-        webViewController.photo = _HDPhoto;
-        
-    }
-    
-}
-
-- (void)linkTapped {
-    
-    [self performSegueWithIdentifier:@"webViewSegue" sender:self];
-    
-}
-
 - (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView
 {
     return self.HDImageView;
 }
 
-- (void)cancelPhoto {
-    [self closePhoto];
-}
 
-- (void)savePhoto {
+#pragma mark - searching
 
-    UIImageWriteToSavedPhotosAlbum(_HDImage, nil, nil, nil);
-
-}
-
-- (void)closePhoto {
+- (void)search {
     
-    self.navigationItem.leftBarButtonItem = nil;
-    self.navigationItem.rightBarButtonItem = nil;
     
-    self.navigationItem.title = @"Photo Reel";
-    [_fullScreenView removeFromSuperview];
+    // if user hit search - store results
+    if(_endOfSearch){
+        [self persistData];
+        return;
+    }
     
+    // remove all spaces
+    NSString *text = [_searchBar.text stringByReplacingOccurrencesOfString:@" " withString:@""];
+    
+    // create request
+    NSString *urlString = [NSString stringWithFormat:@"https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=%@&tags=%@&per_page=%ld&format=json&nojsoncallback=1", flickrAPIKey, text, (long)numResults];
+    NSURL *url = [NSURL URLWithString:urlString];
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    
+    // begin urlsession
+    NSURLSessionDownloadTask *dataTask = [_urlSession downloadTaskWithRequest:request completionHandler:^(NSURL *location, NSURLResponse *response, NSError *error) {
+        
+        // parse data
+        NSData *data = [NSData dataWithContentsOfURL:location];
+        NSDictionary *jsonDictionary = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
+        self.photos = [[jsonDictionary valueForKey:@"photos"] objectForKey:@"photo"];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.collectionView reloadData];
+        });
+        
+    }];
+    
+    [dataTask resume];
 }
-
 
 #pragma mark - searchBar
 
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
     
+    // do not search if newest character is space
     NSInteger length = [searchText length];
     char last = [searchText characterAtIndex:length - 1];
-    
     if(last == ' '){
         return;
     }
@@ -355,7 +340,6 @@ static NSString *detailSegueIdentifier = @"detailSegue";
 - (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
     
     [self cancelSearch];
-    
     // clear collectionView
     self.photos = nil;
     dispatch_async(dispatch_get_main_queue(), ^{
@@ -398,11 +382,6 @@ static NSString *detailSegueIdentifier = @"detailSegue";
     if (![fileManager fileExistsAtPath: path]) {
         
         path = [documentsDirectory stringByAppendingPathComponent: [NSString stringWithFormat:@"searches.plist"] ];
-        NSLog(@"DOESN'T EXIST");
-
-    }
-    else {
-        NSLog(@"EXISTS");
     }
     
     NSMutableDictionary *data;
@@ -432,11 +411,6 @@ static NSString *detailSegueIdentifier = @"detailSegue";
     
     [data setObject:photoIDs forKey:text];
     [data writeToFile:path atomically:YES];
-    
-    //To reterive the data from the plist
-    NSMutableDictionary *savedValue = [[NSMutableDictionary alloc] initWithContentsOfFile: path];
-    NSString *value = [savedValue objectForKey:@"id"];
-    NSLog(@"%@",value);
 }
 
 

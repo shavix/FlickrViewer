@@ -22,6 +22,12 @@
     
     [super viewDidLoad];
     
+    [self activityIndicator];
+    
+}
+
+- (void)activityIndicator {
+    
     // activity indicator
     _activityView=[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
     _activityView.center = CGPointMake([UIScreen mainScreen].bounds.size.width / 2.0, [UIScreen mainScreen].bounds.size.height / 2.0);
@@ -42,9 +48,9 @@
     
     [self urlRequest];
 
-    
 }
 
+#pragma mark - webView
 
 - (void) webViewDidFinishLoad:(UIWebView *)webView {
     
@@ -53,7 +59,6 @@
     _loadingLabel.hidden = YES;
     
 }
-
 
 - (void)urlRequest {
     

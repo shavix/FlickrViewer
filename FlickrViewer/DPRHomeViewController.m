@@ -43,11 +43,8 @@
     [self.view addSubview:webView];
 
     // button ui
-    _startButton.layer.cornerRadius = 10;
-    _startButton.layer.shadowColor = [UIColor blackColor].CGColor;
-    _startButton.layer.shadowRadius = 3.0f;
-    _startButton.layer.shadowOffset = CGSizeMake(0.0f, 2.0f);
-    _startButton.layer.shadowOpacity = 0.5f;
+    _startButton.layer.borderWidth = 3.0f;
+    _startButton.layer.borderColor = [UIColor whiteColor].CGColor;
     
 }
 
