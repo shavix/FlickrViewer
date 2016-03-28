@@ -280,7 +280,6 @@ static NSString *webViewSegueIdentifier = @"webViewSegue";
 
 - (void)search {
     
-    
     // if user hit search - store results
     if(_endOfSearch){
         [self persistData];
@@ -302,7 +301,7 @@ static NSString *webViewSegueIdentifier = @"webViewSegue";
         NSData *data = [NSData dataWithContentsOfURL:location];
         NSDictionary *jsonDictionary = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
         self.photos = [[jsonDictionary valueForKey:@"photos"] objectForKey:@"photo"];
-        
+                
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.collectionView reloadData];
         });

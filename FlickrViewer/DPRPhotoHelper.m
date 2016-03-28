@@ -26,7 +26,6 @@
 
 + (void)HDImageForPhoto:(NSDictionary *)photo completion:(void (^)(NSDictionary *))completion{
     
-    
     NSString *photoID = [photo objectForKey:@"id"];
     // create request
     NSString *urlString = [NSString stringWithFormat:@"https://api.flickr.com/services/rest/?method=flickr.photos.getSizes&api_key=%@&photo_id=%@&format=json&nojsoncallback=1", flickrAPIKey, photoID];

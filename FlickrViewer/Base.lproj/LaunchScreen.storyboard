@@ -3,6 +3,8 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -16,7 +18,26 @@
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="tSi-ec-5RE">
+                                <rect key="frame" x="90" y="223" width="420" height="154.5"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="tSi-ec-5RE" secondAttribute="height" multiplier="220:81" id="mgS-zL-izQ"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="tSi-ec-5RE" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="P2H-rf-7e5"/>
+                            <constraint firstItem="tSi-ec-5RE" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="YJc-qJ-0Pp"/>
+                            <constraint firstItem="tSi-ec-5RE" firstAttribute="width" secondItem="Ze5-6b-2t3" secondAttribute="width" multiplier="0.7" id="fT4-Te-nv1"/>
+                            <constraint firstItem="tSi-ec-5RE" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" constant="40" id="jha-Ll-drh"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="jha-Ll-drh"/>
+                            </mask>
+                        </variation>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -24,4 +45,7 @@
             <point key="canvasLocation" x="53" y="375"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Logo.png" width="440" height="162"/>
+    </resources>
 </document>

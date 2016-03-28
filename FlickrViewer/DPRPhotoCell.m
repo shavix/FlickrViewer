@@ -23,15 +23,6 @@
     
     if(self) {
         
-        self.backgroundColor = [UIColor colorWithWhite:0.85f alpha:1.0f];
-        
-        self.layer.borderColor = [UIColor lightGrayColor].CGColor;
-        //self.layer.borderWidth = 3.0f;
-        self.layer.shadowColor = [UIColor blackColor].CGColor;
-        self.layer.shadowRadius = 3.0f;
-        self.layer.shadowOffset = CGSizeMake(0.0f, 2.0f);
-        self.layer.shadowOpacity = 0.5f;
-        
         self.imageView = [[UIImageView alloc] initWithFrame:self.bounds];
 
         self.imageView.contentMode = UIViewContentModeScaleAspectFill;
