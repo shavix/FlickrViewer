@@ -9,8 +9,9 @@
 #import "DPRWebViewController.h"
 #import "DPRPhotoHelper.h"
 
+static const NSString *flickrAPIKey = @"d7f3b39e34aad94a9c0249e676c0074f";
+
 @interface DPRWebViewController()
-@property (weak, nonatomic) IBOutlet UIWebView *webView;
 
 @property (strong, nonatomic) UIActivityIndicatorView *activityView;
 @property (strong, nonatomic) UILabel *loadingLabel;
@@ -64,7 +65,7 @@
 - (void)urlRequest {
     
     // get info
-    [DPRPhotoHelper infoForPhoto:_photo completion:^(NSDictionary *info){
+    [DPRPhotoHelper infoForPhoto:_photo withAPIKey:flickrAPIKey completion:^(NSDictionary *info){
         
         NSArray *urlDictionary = [[info objectForKey:@"urls"] objectForKey:@"url"];
         NSString *website = [[urlDictionary objectAtIndex:0] objectForKey:@"_content"];

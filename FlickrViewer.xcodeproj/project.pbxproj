@@ -134,6 +134,8 @@
 				63E360231CA84D960060CA47 /* Model */,
 				63E35FF01CA84D8B0060CA47 /* AppDelegate.h */,
 				63E35FF11CA84D8B0060CA47 /* AppDelegate.m */,
+				6372D2F51CAA5BC900BFC7FA /* DPRPhotoHelper.h */,
+				6372D2F61CAA5BC900BFC7FA /* DPRPhotoHelper.m */,
 				63E35FFC1CA84D8B0060CA47 /* Assets.xcassets */,
 				63E35FED1CA84D8B0060CA47 /* Supporting Files */,
 			);
@@ -169,8 +171,6 @@
 		63E360231CA84D960060CA47 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				6372D2F51CAA5BC900BFC7FA /* DPRPhotoHelper.h */,
-				6372D2F61CAA5BC900BFC7FA /* DPRPhotoHelper.m */,
 				63E360011CA84D8C0060CA47 /* Info.plist */,
 				63E35FF91CA84D8B0060CA47 /* FlickrViewer.xcdatamodeld */,
 				63E360301CA854A90060CA47 /* DPRPhotoCell.h */,
@@ -183,7 +183,6 @@
 			isa = PBXGroup;
 			children = (
 				63722CDA1CA895CB00C9EE08 /* WebView */,
-				63E3603D1CA882E40060CA47 /* Helper */,
 				63E3603B1CA882CB0060CA47 /* CollectionView */,
 				63E3603A1CA882C40060CA47 /* Home */,
 			);
@@ -224,13 +223,6 @@
 				63E3602E1CA8540E0060CA47 /* DPRCollectionViewController.m */,
 			);
 			name = CollectionView;
-			sourceTree = "<group>";
-		};
-		63E3603D1CA882E40060CA47 /* Helper */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Helper;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

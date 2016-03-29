@@ -23,7 +23,7 @@
     
 }
 
-+ (void)HDImageForPhoto:(NSDictionary *)photo completion:(void (^)(NSDictionary *))completion{
++ (void)HDImageForPhoto:(NSDictionary *)photo withAPIKey:(const NSString *)flickrAPIKey completion:(void (^)(NSDictionary *))completion{
     
     NSString *photoID = [photo objectForKey:@"id"];
     // create request
@@ -50,7 +50,7 @@
     
 }
 
-+ (void)infoForPhoto:(NSDictionary *)photo completion:(void (^)(NSDictionary *))completion {
++ (void)infoForPhoto:(NSDictionary *)photo withAPIKey:(const NSString *)flickrAPIKey completion:(void (^)(NSDictionary *))completion {
     
     NSString *photoID = [photo objectForKey:@"id"];
     // create request

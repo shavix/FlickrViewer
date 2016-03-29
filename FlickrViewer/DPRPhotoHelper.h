@@ -11,8 +11,9 @@
 
 @interface DPRPhotoHelper : NSObject
 
+// layer on top of Flickr API - public methods
 + (void)thumbnailForPhoto:(NSDictionary *)photo completion:(void(^)(UIImage *image))completion;
-+ (void)HDImageForPhoto:(NSDictionary *)photo completion:(void(^)(NSDictionary *HDPhoto))completion;
-+ (void)infoForPhoto:(NSDictionary *)photo completion:(void(^)(NSDictionary *info))completion;
++ (void)HDImageForPhoto:(NSDictionary *)photo withAPIKey:(const NSString *)flickrAPIKey completion:(void(^)(NSDictionary *HDPhoto))completion;
++ (void)infoForPhoto:(NSDictionary *)photo withAPIKey:(const NSString *)flickrAPIKey completion:(void(^)(NSDictionary *info))completion;
 
 @end

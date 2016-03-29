@@ -11,6 +11,7 @@
 #import "DPRPhotoHelper.h"
 #import "DPRWebViewController.h"
 
+static const NSString *flickrAPIKey = @"d7f3b39e34aad94a9c0249e676c0074f";
 static const NSInteger numResults = 60;
 static NSString *cellReuseIdentifier = @"photoCell";
 static NSString *webViewSegueIdentifier = @"webViewSegue";
@@ -21,7 +22,6 @@ static NSString *webViewSegueIdentifier = @"webViewSegue";
 @property (nonatomic, strong) UIView *fullScreenView;
 @property (nonatomic, strong) UIBarButtonItem *cancelButton;
 @property (nonatomic, strong) UIBarButtonItem *saveButton;
-@property (nonatomic, strong) UILabel *startLabel;
 @property (nonatomic, strong) UIScrollView *scrollView;
 @property (nonatomic, strong) UIImageView *HDImageView;
 @property (nonatomic, strong) UIButton *webViewButton;
@@ -230,7 +230,7 @@ static NSString *webViewSegueIdentifier = @"webViewSegue";
     
     [self activityIndicator];
 
-    [DPRPhotoHelper HDImageForPhoto:[_photos objectAtIndex:indexPath.row] completion:^(NSDictionary *HDPhoto){
+    [DPRPhotoHelper HDImageForPhoto:[_photos objectAtIndex:indexPath.row] withAPIKey:flickrAPIKey completion:^(NSDictionary *HDPhoto){
         
         dispatch_async(dispatch_get_main_queue(), ^{
             
