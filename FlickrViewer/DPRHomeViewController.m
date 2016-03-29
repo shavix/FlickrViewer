@@ -36,7 +36,8 @@
     UIWebView *webView = [[UIWebView alloc] init];
     webView.delegate = self;
     webView.layer.zPosition = -1;
-    webView.center = CGPointMake(self.view.center.x, self.view.center.y);
+    CGPoint center = CGPointMake(self.view.center.x, self.view.center.y);
+    webView.center = center;
     [webView loadData:gif MIMEType:@"image/gif" textEncodingName:@"" baseURL:[[NSURL alloc] init]];
     webView.frame = frame;
     webView.userInteractionEnabled = NO;
