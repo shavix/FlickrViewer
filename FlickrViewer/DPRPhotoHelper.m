@@ -32,7 +32,7 @@
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
     NSURLSession *urlSession = [NSURLSession sessionWithConfiguration:configuration];
-
+    
     // begin download
     NSURLSessionDownloadTask *downloadTask = [urlSession downloadTaskWithRequest:request completionHandler:^(NSURL *location, NSURLResponse *response, NSError *error) {
         
@@ -47,7 +47,7 @@
     }];
     
     [downloadTask resume];
-
+    
 }
 
 + (void)infoForPhoto:(NSDictionary *)photo completion:(void (^)(NSDictionary *))completion {
@@ -70,7 +70,7 @@
         NSDictionary *info = [jsonDictionary objectForKey:@"photo"];
         
         completion(info);
-
+        
     }];
     
     [downloadTask resume];

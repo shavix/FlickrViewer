@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		6362F3FA1CA8F88400B4FAEA /* Logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 6362F3F91CA8F88400B4FAEA /* Logo.png */; };
 		63722CDD1CA895DF00C9EE08 /* DPRWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63722CDC1CA895DF00C9EE08 /* DPRWebViewController.m */; };
+		6372D2F71CAA5BC900BFC7FA /* DPRPhotoHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 6372D2F61CAA5BC900BFC7FA /* DPRPhotoHelper.m */; };
 		6392F9551CA90DA30061F104 /* owl.gif in Resources */ = {isa = PBXBuildFile; fileRef = 6392F9541CA90DA30061F104 /* owl.gif */; };
 		63E35FEF1CA84D8B0060CA47 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 63E35FEE1CA84D8B0060CA47 /* main.m */; };
 		63E35FF21CA84D8B0060CA47 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 63E35FF11CA84D8B0060CA47 /* AppDelegate.m */; };
@@ -21,7 +22,6 @@
 		63E3602C1CA84E440060CA47 /* DPRHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63E3602B1CA84E440060CA47 /* DPRHomeViewController.m */; };
 		63E3602F1CA8540E0060CA47 /* DPRCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63E3602E1CA8540E0060CA47 /* DPRCollectionViewController.m */; };
 		63E360321CA854A90060CA47 /* DPRPhotoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 63E360311CA854A90060CA47 /* DPRPhotoCell.m */; };
-		63E360391CA882970060CA47 /* DPRPhotoHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 63E360381CA882970060CA47 /* DPRPhotoHelper.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +45,8 @@
 		6362F3F91CA8F88400B4FAEA /* Logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Logo.png; sourceTree = "<group>"; };
 		63722CDB1CA895DF00C9EE08 /* DPRWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DPRWebViewController.h; sourceTree = "<group>"; };
 		63722CDC1CA895DF00C9EE08 /* DPRWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DPRWebViewController.m; sourceTree = "<group>"; };
+		6372D2F51CAA5BC900BFC7FA /* DPRPhotoHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DPRPhotoHelper.h; sourceTree = "<group>"; };
+		6372D2F61CAA5BC900BFC7FA /* DPRPhotoHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DPRPhotoHelper.m; sourceTree = "<group>"; };
 		6392F9541CA90DA30061F104 /* owl.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = owl.gif; sourceTree = "<group>"; };
 		63E35FEA1CA84D8B0060CA47 /* FlickrViewer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FlickrViewer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		63E35FEE1CA84D8B0060CA47 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -67,8 +69,6 @@
 		63E3602E1CA8540E0060CA47 /* DPRCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DPRCollectionViewController.m; sourceTree = "<group>"; };
 		63E360301CA854A90060CA47 /* DPRPhotoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DPRPhotoCell.h; sourceTree = "<group>"; };
 		63E360311CA854A90060CA47 /* DPRPhotoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DPRPhotoCell.m; sourceTree = "<group>"; };
-		63E360371CA882970060CA47 /* DPRPhotoHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DPRPhotoHelper.h; sourceTree = "<group>"; };
-		63E360381CA882970060CA47 /* DPRPhotoHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DPRPhotoHelper.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -227,8 +227,8 @@
 		63E3603D1CA882E40060CA47 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
-				63E360371CA882970060CA47 /* DPRPhotoHelper.h */,
-				63E360381CA882970060CA47 /* DPRPhotoHelper.m */,
+				6372D2F51CAA5BC900BFC7FA /* DPRPhotoHelper.h */,
+				6372D2F61CAA5BC900BFC7FA /* DPRPhotoHelper.m */,
 			);
 			name = Helper;
 			sourceTree = "<group>";
@@ -368,7 +368,7 @@
 				63E35FF21CA84D8B0060CA47 /* AppDelegate.m in Sources */,
 				63E35FFB1CA84D8B0060CA47 /* FlickrViewer.xcdatamodeld in Sources */,
 				63E3602F1CA8540E0060CA47 /* DPRCollectionViewController.m in Sources */,
-				63E360391CA882970060CA47 /* DPRPhotoHelper.m in Sources */,
+				6372D2F71CAA5BC900BFC7FA /* DPRPhotoHelper.m in Sources */,
 				63722CDD1CA895DF00C9EE08 /* DPRWebViewController.m in Sources */,
 				63E35FEF1CA84D8B0060CA47 /* main.m in Sources */,
 				63E3602C1CA84E440060CA47 /* DPRHomeViewController.m in Sources */,
