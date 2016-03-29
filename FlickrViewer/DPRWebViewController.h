@@ -10,8 +10,7 @@
 
 @interface DPRWebViewController : UIViewController <UIWebViewDelegate>
 
-@property (weak, nonatomic) IBOutlet UIWebView *webView;
-
+// photo viewed in webview
 @property (strong, nonatomic) NSDictionary *photo;
 
 @end

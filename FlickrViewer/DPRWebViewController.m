@@ -13,6 +13,7 @@ static const NSString *flickrAPIKey = @"d7f3b39e34aad94a9c0249e676c0074f";
 
 @interface DPRWebViewController()
 
+@property (weak, nonatomic) IBOutlet UIWebView *webView;
 @property (strong, nonatomic) UIActivityIndicatorView *activityView;
 @property (strong, nonatomic) UILabel *loadingLabel;
 
@@ -55,6 +56,7 @@ static const NSString *flickrAPIKey = @"d7f3b39e34aad94a9c0249e676c0074f";
 
 #pragma mark - webView
 
+
 - (void) webViewDidFinishLoad:(UIWebView *)webView {
     
     _activityView.hidden = YES;
@@ -62,6 +64,7 @@ static const NSString *flickrAPIKey = @"d7f3b39e34aad94a9c0249e676c0074f";
     
 }
 
+// request for webview
 - (void)urlRequest {
     
     // get info
