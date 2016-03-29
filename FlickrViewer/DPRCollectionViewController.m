@@ -33,6 +33,7 @@ static NSString *webViewSegueIdentifier = @"webViewSegue";
 @property (nonatomic) BOOL endOfSearch;
 @property (nonatomic, strong) UIImage *HDImage;
 @property (nonatomic, strong) NSDictionary *currentPhoto;
+@property (nonatomic, strong) UITapGestureRecognizer *tapRecognizer;
 
 @end
 
@@ -68,11 +69,15 @@ static NSString *webViewSegueIdentifier = @"webViewSegue";
     [self addSearchBar];
     
     [[UINavigationBar appearance] setBackgroundColor:[UIColor whiteColor]];
+    self.tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(collectionViewTapped)];
+    [self.collectionView addGestureRecognizer:_tapRecognizer];
+    
 }
 
 - (void)collectionViewTapped {
 
     [self.searchBar resignFirstResponder];
+    _tapRecognizer.enabled = NO;
 
 }
 
@@ -371,6 +376,7 @@ static NSString *webViewSegueIdentifier = @"webViewSegue";
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
     
+    _tapRecognizer.enabled = NO;
     self.endOfSearch = true;
     [self.view endEditing:YES];
     [self search];
@@ -379,6 +385,7 @@ static NSString *webViewSegueIdentifier = @"webViewSegue";
 
 - (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
     
+    _tapRecognizer.enabled = NO;
     [self cancelSearch];
     // clear collectionView
     self.photos = nil;
@@ -390,6 +397,7 @@ static NSString *webViewSegueIdentifier = @"webViewSegue";
 
 - (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar{
     
+    _tapRecognizer.enabled = YES;
     [self.searchBar setShowsCancelButton:YES animated:YES];
 
 }
