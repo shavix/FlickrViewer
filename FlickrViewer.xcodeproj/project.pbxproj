@@ -105,6 +105,15 @@
 			name = WebView;
 			sourceTree = "<group>";
 		};
+		6372D30A1CAAE01A00BFC7FA /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				6372D2F51CAA5BC900BFC7FA /* DPRPhotoHelper.h */,
+				6372D2F61CAA5BC900BFC7FA /* DPRPhotoHelper.m */,
+			);
+			name = Helper;
+			sourceTree = "<group>";
+		};
 		63E35FE11CA84D8B0060CA47 = {
 			isa = PBXGroup;
 			children = (
@@ -134,8 +143,7 @@
 				63E360231CA84D960060CA47 /* Model */,
 				63E35FF01CA84D8B0060CA47 /* AppDelegate.h */,
 				63E35FF11CA84D8B0060CA47 /* AppDelegate.m */,
-				6372D2F51CAA5BC900BFC7FA /* DPRPhotoHelper.h */,
-				6372D2F61CAA5BC900BFC7FA /* DPRPhotoHelper.m */,
+				6372D30A1CAAE01A00BFC7FA /* Helper */,
 				63E35FFC1CA84D8B0060CA47 /* Assets.xcassets */,
 				63E35FED1CA84D8B0060CA47 /* Supporting Files */,
 			);

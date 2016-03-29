@@ -333,7 +333,7 @@ static NSString *webViewSegueIdentifier = @"webViewSegue";
     }
     
     // remove all spaces
-    NSString *text = [_searchBar.text stringByReplacingOccurrencesOfString:@" " withString:@""];
+    NSString *text = [_searchBar.text stringByReplacingOccurrencesOfString:@" " withString:@"+"];
     
     // create request
     NSString *urlString = [NSString stringWithFormat:@"https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=%@&tags=%@&per_page=%ld&format=json&nojsoncallback=1", flickrAPIKey, text, (long)numResults];
