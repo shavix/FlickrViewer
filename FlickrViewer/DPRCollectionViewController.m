@@ -32,7 +32,7 @@ static NSString *webViewSegueIdentifier = @"webViewSegue";
 @property (nonatomic, strong) NSArray *photos;
 @property (nonatomic) BOOL endOfSearch;
 @property (nonatomic, strong) UIImage *HDImage;
-@property (nonatomic, strong) NSDictionary *HDPhoto;
+@property (nonatomic, strong) NSDictionary *currentPhoto;
 
 @end
 
@@ -110,7 +110,41 @@ static NSString *webViewSegueIdentifier = @"webViewSegue";
 }
 
 - (void)savePhoto {
-    UIImageWriteToSavedPhotosAlbum(_HDImage, nil, nil, nil);
+    UIImageWriteToSavedPhotosAlbum(_HDImage, self, @selector(savedImage:toPhotoAlbumWithError:usingContextInfo:), nil);
+}
+
+- (void)savedImage:(UIImage *)image toPhotoAlbumWithError:(NSError *)error usingContextInfo:(void*)ctxInfo {
+    
+    // unable to save to photo album
+    if (error) {
+        UIAlertController *controller = [UIAlertController
+                                         alertControllerWithTitle:@"Error"
+                                         message:@"Unable to save to photo album"
+                                         preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction *okAction = [UIAlertAction
+                                   actionWithTitle:@"OK"
+                                   style:UIAlertActionStyleDefault
+                                   handler:nil];
+        [controller addAction:okAction];
+        
+        [self presentViewController:controller animated:YES completion:nil];
+    }
+    // saved to photo album
+    else {
+        UIAlertController *controller = [UIAlertController
+                                         alertControllerWithTitle:@"Message"
+                                         message:@"Saved to photo album!"
+                                         preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction *okAction = [UIAlertAction
+                                   actionWithTitle:@"OK"
+                                   style:UIAlertActionStyleDefault
+                                   handler:nil];
+        [controller addAction:okAction];
+        
+        [self presentViewController:controller animated:YES completion:nil];
+    }
 }
 
 - (void)closePhoto {
@@ -129,7 +163,7 @@ static NSString *webViewSegueIdentifier = @"webViewSegue";
     if([segue.identifier isEqualToString:webViewSegueIdentifier]){
         
         DPRWebViewController *webViewController = segue.destinationViewController;
-        webViewController.photo = _HDPhoto;
+        webViewController.photo = _currentPhoto;
         
     }
     
@@ -199,7 +233,8 @@ static NSString *webViewSegueIdentifier = @"webViewSegue";
             NSString *urlString = [HDPhoto objectForKey:@"source"];
             UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:urlString]]];
             self.HDImage = image;
-            self.HDPhoto = HDPhoto;
+
+            self.currentPhoto = [_photos objectAtIndex:indexPath.row];
             
             self.HDImageView = [[UIImageView alloc] initWithImage:image];
             CGFloat imageWidth = image.size.width;
@@ -215,7 +250,9 @@ static NSString *webViewSegueIdentifier = @"webViewSegue";
             self.scrollView.center = CGPointMake(self.view.center.x, self.view.center.y);
             self.scrollView.minimumZoomScale=0.5;
             self.scrollView.maximumZoomScale=6.0;
-            self.scrollView.contentSize=CGSizeMake(1280, 960);
+            self.scrollView.contentSize=CGSizeMake(_HDImageView.frame.size.width, _HDImageView.frame.size.height);
+            self.scrollView.showsHorizontalScrollIndicator = NO;
+            self.scrollView.showsVerticalScrollIndicator = NO;
             self.scrollView.delegate=self;
             [self.scrollView addSubview:_HDImageView];
             [_fullScreenView addSubview:_scrollView];
@@ -275,6 +312,10 @@ static NSString *webViewSegueIdentifier = @"webViewSegue";
     return self.HDImageView;
 }
 
+- (void)scrollViewDidEndZooming:(UIScrollView *)scrollV withView:(UIView *)view atScale:(CGFloat)scale
+{
+    [self.scrollView setContentSize:CGSizeMake(scale*self.view.frame.size.width, scale*self.view.frame.size.height)];
+}
 
 #pragma mark - searching
 

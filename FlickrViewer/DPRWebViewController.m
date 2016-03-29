@@ -7,6 +7,7 @@
 //
 
 #import "DPRWebViewController.h"
+#import "DPRPhotoHelper.h"
 
 @interface DPRWebViewController()
 @property (weak, nonatomic) IBOutlet UIWebView *webView;
@@ -46,6 +47,7 @@
     [_loadingLabel setText:@"Loading"];
     [[self view] addSubview:_loadingLabel];
     
+    // make request
     [self urlRequest];
 
 }
@@ -55,22 +57,24 @@
 - (void) webViewDidFinishLoad:(UIWebView *)webView {
     
     _activityView.hidden = YES;
-    
     _loadingLabel.hidden = YES;
     
 }
 
 - (void)urlRequest {
     
-    NSString *website = [_photo objectForKey:@"url"];
-    
-    NSURL *url = [NSURL URLWithString:website];
-    
-    NSURLRequest *urlRequest = [NSURLRequest requestWithURL:url];
-    
-    [self.webView loadRequest:urlRequest];
-    
-    [self.webView setDelegate:self];
+    // get info
+    [DPRPhotoHelper infoForPhoto:_photo completion:^(NSDictionary *info){
+        
+        NSArray *urlDictionary = [[info objectForKey:@"urls"] objectForKey:@"url"];
+        NSString *website = [[urlDictionary objectAtIndex:0] objectForKey:@"_content"];
+        NSURL *url = [NSURL URLWithString:website];
+        NSURLRequest *urlRequest = [NSURLRequest requestWithURL:url];
+        
+        [self.webView loadRequest:urlRequest];
+        [self.webView setDelegate:self];
+        
+    }];
 }
 
 

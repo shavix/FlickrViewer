@@ -51,4 +51,32 @@
 
 }
 
++ (void)infoForPhoto:(NSDictionary *)photo completion:(void (^)(NSDictionary *))completion {
+    
+    NSString *photoID = [photo objectForKey:@"id"];
+    // create request
+    NSString *urlString = [NSString stringWithFormat:@"https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&api_key=%@&photo_id=%@&format=json&nojsoncallback=1", flickrAPIKey, photoID];
+    NSURL *url = [NSURL URLWithString:urlString];
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
+    NSURLSession *urlSession = [NSURLSession sessionWithConfiguration:configuration];
+    
+    // begin download
+    NSURLSessionDownloadTask *downloadTask = [urlSession downloadTaskWithRequest:request completionHandler:^(NSURL *location, NSURLResponse *response, NSError *error) {
+        
+        // parse data
+        NSData *data = [NSData dataWithContentsOfURL:location];
+        NSDictionary *jsonDictionary = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
+        
+        NSDictionary *info = [jsonDictionary objectForKey:@"photo"];
+        
+        completion(info);
+
+    }];
+    
+    [downloadTask resume];
+    
+}
+
+
 @end
