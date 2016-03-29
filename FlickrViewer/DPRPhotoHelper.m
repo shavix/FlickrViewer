@@ -7,7 +7,6 @@
 //
 
 #import "DPRPhotoHelper.h"
-#import "DPRCollectionViewController.h"
 
 @implementation DPRPhotoHelper
 

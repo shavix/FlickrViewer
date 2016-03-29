@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <UIKit/UIKit.h>
+#import "DPRCollectionViewController.h"
 
 @interface DPRPhotoHelper : NSObject
 
