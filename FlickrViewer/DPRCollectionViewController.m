@@ -28,12 +28,11 @@ static NSString *webViewSegueIdentifier = @"webViewSegue";
 @property (strong, nonatomic) UIActivityIndicatorView *activityView;
 @property (strong, nonatomic) UILabel *loadingLabel;
 
-@property (nonatomic, strong) NSURLSession *urlSession;
 @property (nonatomic, strong) NSArray *photos;
-@property (nonatomic) BOOL endOfSearch;
 @property (nonatomic, strong) UIImage *HDImage;
 @property (nonatomic, strong) NSDictionary *currentPhoto;
 @property (nonatomic, strong) UITapGestureRecognizer *tapRecognizer;
+@property (nonatomic) BOOL endOfSearch;
 
 @end
 
@@ -55,10 +54,6 @@ static NSString *webViewSegueIdentifier = @"webViewSegue";
     self.collectionView.delegate = self;
     self.collectionView.dataSource = self;
     [self.collectionView registerClass:[DPRPhotoCell class] forCellWithReuseIdentifier:cellReuseIdentifier];
-    
-    // urlSession
-    NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
-    self.urlSession = [NSURLSession sessionWithConfiguration:configuration];
 
 }
 
@@ -115,9 +110,11 @@ static NSString *webViewSegueIdentifier = @"webViewSegue";
 }
 
 - (void)savePhoto {
+    // save photo to camera roll
     UIImageWriteToSavedPhotosAlbum(_HDImage, self, @selector(savedImage:toPhotoAlbumWithError:usingContextInfo:), nil);
 }
 
+// called when saving to camera roll
 - (void)savedImage:(UIImage *)image toPhotoAlbumWithError:(NSError *)error usingContextInfo:(void*)ctxInfo {
     
     // unable to save to photo album
@@ -222,6 +219,7 @@ static NSString *webViewSegueIdentifier = @"webViewSegue";
     
 }
 
+// sets image to full screen, enables pan and zoom on image
 -(void) collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     
     // set image to full screen
@@ -267,6 +265,9 @@ static NSString *webViewSegueIdentifier = @"webViewSegue";
             CGRect titleFrame = CGRectMake(0, 0, self.view.frame.size.width, 40);
             UILabel *titleLabel = [[UILabel alloc] initWithFrame:titleFrame];
             titleLabel.text = title;
+            if([title length] == 0){
+                titleLabel.text = @"Title Unavailable";
+            }
             titleLabel.textColor = [UIColor whiteColor];
             [titleLabel setFont:[UIFont boldSystemFontOfSize:12]];
             titleLabel.adjustsFontSizeToFitWidth = NO;
@@ -317,6 +318,7 @@ static NSString *webViewSegueIdentifier = @"webViewSegue";
     return self.HDImageView;
 }
 
+// adjust content size depending on zoom scale
 - (void)scrollViewDidEndZooming:(UIScrollView *)scrollV withView:(UIView *)view atScale:(CGFloat)scale
 {
     [self.scrollView setContentSize:CGSizeMake(scale*self.view.frame.size.width, scale*self.view.frame.size.height)];
@@ -324,6 +326,7 @@ static NSString *webViewSegueIdentifier = @"webViewSegue";
 
 #pragma mark - searching
 
+// search as you type: begin searching for new results every time a new character is entered
 - (void)search {
     
     // if user hit search - store results
@@ -339,9 +342,11 @@ static NSString *webViewSegueIdentifier = @"webViewSegue";
     NSString *urlString = [NSString stringWithFormat:@"https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=%@&tags=%@&per_page=%ld&format=json&nojsoncallback=1", flickrAPIKey, text, (long)numResults];
     NSURL *url = [NSURL URLWithString:urlString];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
+    NSURLSession *urlSession = [NSURLSession sessionWithConfiguration:configuration];
     
     // begin urlsession
-    NSURLSessionDownloadTask *dataTask = [_urlSession downloadTaskWithRequest:request completionHandler:^(NSURL *location, NSURLResponse *response, NSError *error) {
+    NSURLSessionDownloadTask *dataTask = [urlSession downloadTaskWithRequest:request completionHandler:^(NSURL *location, NSURLResponse *response, NSError *error) {
         
         // parse data
         NSData *data = [NSData dataWithContentsOfURL:location];

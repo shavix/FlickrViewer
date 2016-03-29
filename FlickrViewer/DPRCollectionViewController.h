@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-
+// CollectionViewController with search bar and image loading
 @interface DPRCollectionViewController : UICollectionViewController <UISearchBarDelegate,UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UIScrollViewDelegate>
 
 @end

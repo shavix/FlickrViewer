@@ -9,9 +9,10 @@
 #import <Foundation/Foundation.h>
 #import "DPRCollectionViewController.h"
 
+// layer on top of Flickr API
 @interface DPRPhotoHelper : NSObject
 
-// layer on top of Flickr API - public methods
+// class method - retrieve 
 + (void)thumbnailForPhoto:(NSDictionary *)photo completion:(void(^)(UIImage *image))completion;
 + (void)HDImageForPhoto:(NSDictionary *)photo withAPIKey:(const NSString *)flickrAPIKey completion:(void(^)(NSDictionary *HDPhoto))completion;
 + (void)infoForPhoto:(NSDictionary *)photo withAPIKey:(const NSString *)flickrAPIKey completion:(void(^)(NSDictionary *info))completion;

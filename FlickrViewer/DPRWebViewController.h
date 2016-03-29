@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
+// ViewController for viewing web page of Flickr photo
 @interface DPRWebViewController : UIViewController <UIWebViewDelegate>
 
 // photo viewed in webview

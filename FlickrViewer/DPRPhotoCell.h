@@ -10,6 +10,7 @@
 
 @interface DPRPhotoCell : UICollectionViewCell
 
+// Flickr photo encapsulated in cell
 @property (strong, nonatomic) NSDictionary *photo;
 
 @end
