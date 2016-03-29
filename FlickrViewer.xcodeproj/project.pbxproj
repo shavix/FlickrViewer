@@ -67,8 +67,8 @@
 		63E3602E1CA8540E0060CA47 /* DPRCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DPRCollectionViewController.m; sourceTree = "<group>"; };
 		63E360301CA854A90060CA47 /* DPRPhotoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DPRPhotoCell.h; sourceTree = "<group>"; };
 		63E360311CA854A90060CA47 /* DPRPhotoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DPRPhotoCell.m; sourceTree = "<group>"; };
-		63E360371CA882970060CA47 /* DPRPhotoHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DPRPhotoHelper.h; path = ../../../../INTERVIEWS/Fieldwire/FlickrViewer/FlickrViewer/DPRPhotoHelper.h; sourceTree = "<group>"; };
-		63E360381CA882970060CA47 /* DPRPhotoHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DPRPhotoHelper.m; path = ../../../../INTERVIEWS/Fieldwire/FlickrViewer/FlickrViewer/DPRPhotoHelper.m; sourceTree = "<group>"; };
+		63E360371CA882970060CA47 /* DPRPhotoHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DPRPhotoHelper.h; sourceTree = "<group>"; };
+		63E360381CA882970060CA47 /* DPRPhotoHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DPRPhotoHelper.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
